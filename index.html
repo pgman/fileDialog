@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>jquery file dialog sample program</title>
+<meta charset="utf-8">
+<meta name="description" content="">
+<meta name="author" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/jquery.filedialog.js"></script>
+<script>
+
+$(function() {
+	$(document).mousedown(function() {
+		$.fileDialog.open({
+			accept: '.png',
+			onChange: function(files) {
+				var reader  = new FileReader();
+				reader.onloadend = function () {
+					$('#preview').prop({ src: reader.result });
+				}				
+			    reader.readAsDataURL(files[0]);				 
+			}
+		});		
+	});
+});
+</script>
+</head>
+<body>
+<img id="preview" src="" height="200" alt="Image preview...">
+</body>
+</html>
